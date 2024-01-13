@@ -1,0 +1,75 @@
+# Server List file
+
+GROUP Jedi Knight Lists
+
+ 		GROUP Dark Jedi
+  			url=http://170.140.39.36/cgi-bin/getips.cgi
+  			format=text
+ 		ENDGROUP
+
+ 	GROUP JediKnight.Net
+ 
+  		GROUP Main IP board
+   			url=http://www.jediknight.net/servers/jk/
+   			format=jknet
+  		ENDGROUP
+
+  		GROUP Add-ons
+   			url=http://www.jediknight.net/servers/mods/
+   			format=jknet
+  		ENDGROUP
+
+  		GROUP Clans
+   			url=http://www.jediknight.net/servers/groups/
+   			format=jknet
+  		ENDGROUP
+
+ 	ENDGROUP # end of JK.Net group
+
+ 	GROUP My JK List
+  		url=lists\myjk.txt
+  		format=text
+ 	ENDGROUP
+
+ENDGROUP # end JK lists
+
+GROUP MOTS
+ GROUP Dark Jedi
+  url=http://www.darkjedi.com/servers/mots.txt
+  format=darkjedi
+ ENDGROUP
+
+ GROUP JK.Net IP Board
+  url=http://www.jediknight.net/servers/mots/
+  format=jknet
+ ENDGROUP
+
+ GROUP My MOTS List
+  url=lists\mymots.txt
+  format=text
+ ENDGROUP
+ENDGROUP
+
+
+GROUP DarkJedi Outlaws
+  url=http://www.darkjedi.com/servers/outlaws.txt
+  format=darkjedi
+ENDGROUP
+
+GROUP Test
+  url=lists\a.txt
+  format=darkjedi
+ENDGROUP
+
+
+GROUP Local games
+  url=ipx:
+ENDGROUP
+
+IPBOARD My CGI
+  game=jk
+  method=post
+  url=http://170.140.39.36/cgi-bin/postip.cgi
+  params=ip=$ip&duration=$tm&comment=$cm
+ENDIPBOARD
+

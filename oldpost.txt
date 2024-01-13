@@ -1,0 +1,86 @@
+void THttpForm::PostToDarkJedi(int game, char *comment,int duration)
+{
+ char s[1024];
+ char gname[128];
+ TMemoryStream * ms;
+
+
+ switch (game)
+ {
+  case game_JK: StrCopy(gname,"JediKnight"); break;
+  case game_MOTS: StrCopy(gname,"Mots"); break;
+  case game_OL: StrCopy(gname,"Outlaws"); break;
+  default: return;
+ }
+
+ sprintf(s,"Game=%s&Comment=%s&Patches=&ETime=%d&AppText=&AddGame=AddGame",
+         gname,comment,duration);
+
+ // 'http://hoohoo.ncsa.uiuc.edu/cgi-bin/post-query' test URL
+
+  ms=new TMemoryStream;
+  ms->WriteBuffer(s,strlen(s));
+  ms->Position=0;
+
+   Http->URL="http://darkjedi.com/cgi-darkjedi/djserver.cgi";
+   Http->SendStream = ms;
+   Http->RcvdStream = NULL;
+
+    try {
+        Http->Post();
+    } __except (TRUE) {
+    }
+  delete ms;
+}
+
+void THttpForm::PostToJKNET(int game,char * ip,char *comment,char * level,char * mod, int rank, int players)
+{
+ char url[3096];
+ char cgi[2048];
+ char *p;
+
+ p=comment;
+ while (*p!='\0')
+ {
+  if (*p==' ') *p='+';
+  p++;
+ }
+
+ p=level;
+ while (*p!='\0')
+ {
+  if (*p==' ') *p='+';
+  p++;
+ }
+
+ p=mod;
+ while (*p!='\0')
+ {
+  if (*p==' ') *p='+';
+  p++;
+ }
+
+ switch (game)
+ {
+  case game_JK: StrCopy(cgi,"http://www.jediknight.net/servers/jk/cgi-bin/addgame.cgi");
+       break;
+  case game_MOTS: StrCopy(cgi,"http://www.jediknight.net/servers/mots/cgi-bin/addgame.cgi");
+       break;
+  default: return;
+ }
+
+ sprintf(url,"%s?nick=rdroid&email=&ipaddress=%s&level=%s&selectlevel=&levelurl=&mod=%s&selectmod=&modurl=&rank=%d&players=%d&comments=%s&submit.x=8&submit.y=8",
+               cgi,
+               ip,level,mod,rank,players,comment);
+
+// nick=&email=&ipaddress=&level=&selectlevel=Rotating+Levels&levelurl=&mod=&selectmod=none&modurl=&rank=&players=&comments=&submit.x=14&submit.y=3
+
+   Http->URL=url;
+   Http->SendStream = NULL;
+   Http->RcvdStream = NULL;
+
+    try {
+        Http->Get();
+    } __except (TRUE) {
+    }
+}

@@ -1,0 +1,13 @@
+Version 0.1 - first released version
+
+Version 0.2
+
+- Server scanning is now done directly via TCP/IP, not via DirectPlay. The result -
+  it's now nearly instantaneous and DirectX 6.0 problem is gone. The interfaces is
+  also slightly changed (progress indicator is gone as it isn't needed anymore, etc).
+- Added progress indicatiors for server list downloads.
+- Added Outlaws support, including Winsock protocol.
+- Added automatic level downloading (only for JK and MOTS, not Outlaws yet) - if you 
+  try to connect to a server which runs a level you don't have, ReconDroid offers you
+  to download and unzip the level to add-on directoty (which you can specify. By 
+  default it's the "Episode" directory).
